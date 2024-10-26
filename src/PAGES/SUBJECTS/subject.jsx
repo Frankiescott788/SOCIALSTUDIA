@@ -104,7 +104,7 @@ export default function Subject() {
 								viewBox="0 0 24 24"
 								width={20}
 								height={20}
-								color={"#9ca3af"}
+								color={"#7678ed"}
 								fill={"none"}
 							>
 								<path
@@ -137,7 +137,7 @@ export default function Subject() {
 								viewBox="0 0 24 24"
 								width={20}
 								height={20}
-								color={"#9ca3af"}
+								color={"#9ef01a"}
 								fill={"none"}
 							>
 								<path

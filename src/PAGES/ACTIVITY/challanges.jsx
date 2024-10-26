@@ -51,6 +51,12 @@ export default function Challenges() {
           // More questions
         ]
         Please generate a quiz based on the topic: ${prompt}, this user is a grade 12 student in South Africa and the topic is from the subject ${subject}.
+        And if the subject is history, use these questions from the following list and generate them in true or false format:
+        1. Apartheid policies in South Africa were officially implemented in 1948 by the National Party government.
+        2. The pass laws under apartheid restricted where Black South Africans could live, work, and travel.
+        3. Nelson Mandela was imprisoned for only 10 years for his opposition to apartheid before being released in 1990.
+        4. The African National Congress (ANC) was one of the main political organizations that opposed apartheid.
+        5. The apartheid system in South Africa officially ended in 1990 with the release of Nelson Mandela.
       `;
 
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });

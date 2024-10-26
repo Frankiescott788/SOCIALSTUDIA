@@ -6,6 +6,7 @@ import { Skeleton } from "@nextui-org/skeleton";
 import { Avatar } from "@nextui-org/avatar";
 import { Input } from "@nextui-org/input";
 import { useLocation } from "react-router-dom";
+import TypewriterComponent from "typewriter-effect";
 
 export default function Thuso() {
   const [chat, setChat] = useState(null);
@@ -27,7 +28,7 @@ export default function Thuso() {
     const initializeChat = async () => {
       try {
         const genAI = new GoogleGenerativeAI(
-          "AIzaSyAwF4LvkcPAB1CkeC40QSI88htYAr1sFfs"
+          "AIzaSyAAQd5fnpidGv4nU_ZklFBO0QjyEjsoURg"
         );
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
         const initialChat = model.startChat(); // No initial history
@@ -46,7 +47,9 @@ export default function Thuso() {
         setLoading(true);
 
         try {
-            const result = await chat.sendMessage(message);
+            // Modify the message to request short responses
+            const result = await chat.sendMessage(`${message}. Please respond in short sentences and be as concise as possible.
+              The user who is using this platform is a learner in south africa and their name is Frankie`);
             const responseText = await result.response.text();
             
             // Remove asterisks using regex
@@ -66,6 +69,7 @@ export default function Thuso() {
 };
 
 
+
   const handleSuggestedClick = (suggestedMessage) => {
     handleSendMessage(suggestedMessage);
   };
@@ -80,7 +84,7 @@ export default function Thuso() {
     }
   }, [messages]);
 
-  return pathname === "/notes" ? "" : (
+  return pathname === "/newnotes" ? "" : (
     <div className="fixed bottom-10 right-5 z-50">
       <Card
         className={`transition-all transform border ${
@@ -136,36 +140,41 @@ export default function Thuso() {
               messages.map((msg, index) => (
                 <div
                   key={index}
-                  className={`chat ${
-                    msg.role === "user" ? "chat-end" : "chat-start"
-                  }`}
+                  className={`chat ${msg.role === "user" ? "chat-end" : "chat-start"}`}
                 >
                   <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
                       <Avatar
                         alt="Chat avatar"
-                        src={
-                          msg.role === "user"
-                            ? ""
-                            : "logo_icon.png"
-                        }
+                        src={msg.role === "user" ? "" : "logo_icon.png"}
                       />
                     </div>
                   </div>
-
+              
                   <div
                     className="chat-bubble animate__animated animate__zoomIn animate__faster"
                     style={{
-                      backgroundColor:
-                        msg.role === "user" ? "#0496ff" : "#e5e7eb",
+                      backgroundColor: msg.role === "user" ? "#0496ff" : "#e5e7eb",
                       color: msg.role === "user" ? "white" : "black",
                     }}
                   >
-                    {msg.text}
+                    {msg.role === "model" ? (
+                      <TypewriterComponent
+                        options={{
+                          strings: [msg.text],
+                          autoStart: true,
+                          delay: 10, 
+                          loop : false,
+                          deleteSpeed : Infinity,
+                          cursor : ""
+                        }}
+                      />
+                    ) : (
+                      msg.text
+                    )}
                   </div>
                 </div>
-              ))
-            )}
+              )))}
             {loading && (
               <div className="chat chat-start">
                 <Avatar />

@@ -14,10 +14,12 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useAuth } from "../../PROVIDERS/DataProvider.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const { currentUser } = useAuth();
   const user = currentUser.personalInfo;
+  const navigate = useNavigate();
 
   const [leaderboardData, setLeaderboardData] = useState([]);
 
@@ -70,12 +72,14 @@ export default function Dashboard() {
                     ? "Good Day"
                     : "Good Evening"}
                 </span>
-                , {user.username}
+                , {user.firstName}
               </p>
               <p className="text-gray-400 text-sm">Dashboard Overview</p>
             </div>
             <div>
-              <Button className="flex gap-2 bg-[#0496ff] text-white shadowed-btn rounded-md">
+              <Button className="flex gap-2 bg-[#0496ff] text-white shadowed-btn rounded-md" onClick={() => {
+                navigate("/newnotes");
+              }}>
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -4,6 +4,7 @@ import { Link, useLocation, useMatch } from "react-router-dom";
 // import "driver.js/dist/driver.css";
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
+import Logo from "../assets/logo.png";
 
 export default function Sidebar() {
   const [show, setShow] = useState(true);
@@ -35,16 +36,17 @@ export default function Sidebar() {
   const subjectsMatch = useMatch("/subjects/*");
   const forumsMatch = useMatch("/forums/*");
   const activityMatch = useMatch("/activity/*");
+  const notesMatch = useMatch("/notes/*");
 
   const getActiveClass = (match) =>
     match
       ? "bg-[#0496ff] text-white shadowed-btn animate__animated animate__fadeIn"
       : "text-gray-700 hover:text-green-600";
-  const DashboardIcon = (match) => (match ? "white" : "black");
+  const DashboardIcon = (match) => (match ? "red" : "blue");
   return (
     <aside className="w-ful bg-white px-3 h-full">
       <div className="text-center flex justify-center absolute top-0">
-        <Image src="logo.png" className="w-[15rem]" alt="Logo" />
+        <Image src={Logo} className="w-[15rem]" alt="Logo" />
       </div>
 
       <ul className="px-1 mt-[3rem]">
@@ -52,9 +54,9 @@ export default function Sidebar() {
           <li
             className={`flex gap-2 py-2 px-2 rounded-md mb-2 ${
               pathname == "/"
-                ? "bg-[#0496ff] text-white shadowed-btn"
-                : "text-gray-700 hover:text-green-600"
-            } anim`}
+                ? "bg-[#0496ff] text-white shadowed-btn animate__animated animate__fadeIn"
+                : "text-gray-400 hover:text-green-600"  
+            } `}
             id="home"
           >
             <svg
@@ -91,76 +93,6 @@ export default function Sidebar() {
             <div className="text-lg">Dashboard</div>
           </li>
         </Link>
-
-        {/*
-				<Link to="/thuso">
-					<li
-						className={`flex gap-1 my-3 ${getActiveClass(
-							thusoMatch
-						)} rounded-md animate__animated animate__fadeInLeft animate__slow`}
-						id="thuso"
-					>
-						<div className="mt-1 py-2 px-2">
-
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					width={20}
-					height={20}
-					color={"#000000"}
-					fill={"none"}
-				>
-					<path
-						d="M11 8H13C15.8284 8 17.2426 8 18.1213 8.87868C19 9.75736 19 11.1716 19 14C19 16.8284 19 18.2426 18.1213 19.1213C17.2426 20 15.8284 20 13 20H12C12 20 11.5 22 8 22C8 22 9 20.9913 9 19.9827C7.44655 19.9359 6.51998 19.7626 5.87868 19.1213C5 18.2426 5 16.8284 5 14C5 11.1716 5 9.75736 5.87868 8.87868C6.75736 8 8.17157 8 11 8Z"
-						stroke="currentColor"
-						strokeWidth="1.5"
-						strokeLinejoin="round"
-					/>
-					<path
-						d="M19 11.5H19.5C20.4346 11.5 20.9019 11.5 21.25 11.701C21.478 11.8326 21.6674 12.022 21.799 12.25C22 12.5981 22 13.0654 22 14C22 14.9346 22 15.4019 21.799 15.75C21.6674 15.978 21.478 16.1674 21.25 16.299C20.9019 16.5 20.4346 16.5 19.5 16.5H19"
-						stroke="currentColor"
-						strokeWidth="1.5"
-						strokeLinejoin="round"
-					/>
-					<path
-						d="M5 11.5H4.5C3.56538 11.5 3.09808 11.5 2.75 11.701C2.52197 11.8326 2.33261 12.022 2.20096 12.25C2 12.5981 2 13.0654 2 14C2 14.9346 2 15.4019 2.20096 15.75C2.33261 15.978 2.52197 16.1674 2.75 16.299C3.09808 16.5 3.56538 16.5 4.5 16.5H5"
-						stroke="currentColor"
-						strokeWidth="1.5"
-						strokeLinejoin="round"
-					/>
-					<path
-						d="M13.5 3.5C13.5 4.32843 12.8284 5 12 5C11.1716 5 10.5 4.32843 10.5 3.5C10.5 2.67157 11.1716 2 12 2C12.8284 2 13.5 2.67157 13.5 3.5Z"
-						stroke="currentColor"
-						strokeWidth="1.5"
-					/>
-					<path
-						d="M12 5V8"
-						stroke="currentColor"
-						strokeWidth="1.5"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					/>
-					<path
-						d="M9 12V13M15 12V13"
-						stroke="currentColor"
-						strokeWidth="1.5"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					/>
-					<path
-						d="M10 16.5C10 16.5 10.6667 17 12 17C13.3333 17 14 16.5 14 16.5"
-						stroke="currentColor"
-						strokeWidth="1.5"
-						strokeLinecap="round"
-					/>
-				</svg>
-			</div>
-			<div className="text-lg mt-2">Thuso</div>
-		</li>
-				</Link >
-
-
-*/}
 
         <Link to="/subjects">
           <li
@@ -208,7 +140,7 @@ export default function Sidebar() {
           <li
             className={`flex gap-1 my-3 ${getActiveClass(
               forumsMatch
-            )}`}
+            )} rounded-md`}
             id="forums"
           >
             <div className="mt-1 py-2 px-2">
@@ -217,7 +149,7 @@ export default function Sidebar() {
                 viewBox="0 0 24 24"
                 width={20}
                 height={20}
-                color={"#000000"}
+                color={DashboardIcon}
                 fill={"none"}
               >
                 <path
@@ -243,7 +175,7 @@ export default function Sidebar() {
           <li
             className={`flex gap-1 my-3 ${getActiveClass(
               activityMatch
-            )} `}
+            )} rounded-md`}
           >
             <div className="mt-1 py-2 px-2">
               <svg
@@ -251,7 +183,7 @@ export default function Sidebar() {
                 viewBox="0 0 24 24"
                 width={24}
                 height={24}
-                color={"#000000"}
+                color={DashboardIcon}
                 fill={"none"}
               >
                 <path
@@ -307,57 +239,11 @@ export default function Sidebar() {
             <div className="text-lg mt-3">Activity</div>
           </li>
         </Link>
-        <Link to="/activity">
+        
+        <Link to="/notes">
           <li
             className={`flex gap-1 my-3 ${getActiveClass(
-              activityMatch
-            )}`}
-          >
-            <div className="mt-1 py-2 px-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width={24}
-                height={24}
-                color={"#000000"}
-                fill={"none"}
-              >
-                <path
-                  d="M18 2V4M6 2V4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M10 17L9.99999 13.3472C9.99999 13.1555 9.86325 13 9.69458 13H9M13.6297 17L14.9842 13.3492C15.0475 13.1785 14.9128 13 14.7207 13H13"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M2.5 12.2432C2.5 7.88594 2.5 5.70728 3.75212 4.35364C5.00424 3 7.01949 3 11.05 3H12.95C16.9805 3 18.9958 3 20.2479 4.35364C21.5 5.70728 21.5 7.88594 21.5 12.2432V12.7568C21.5 17.1141 21.5 19.2927 20.2479 20.6464C18.9958 22 16.9805 22 12.95 22H11.05C7.01949 22 5.00424 22 3.75212 20.6464C2.5 19.2927 2.5 17.1141 2.5 12.7568V12.2432Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M6 8H18"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <div className="text-lg mt-3">Calendar</div>
-          </li>
-        </Link>
-        <Link to="/activity">
-          <li
-            className={`flex gap-1 my-3 ${getActiveClass(
-              activityMatch
+              notesMatch
             )} rounded-md`}
           >
             <div className="mt-1 py-2 px-2">
@@ -366,7 +252,7 @@ export default function Sidebar() {
                 viewBox="0 0 24 24"
                 width={24}
                 height={24}
-                color={"#000000"}
+                color={DashboardIcon}
                 fill={"none"}
               >
                 <path
@@ -384,18 +270,6 @@ export default function Sidebar() {
               </svg>
             </div>
             <div className="text-lg mt-3">Notes</div>
-          </li>
-        </Link>
-        <Link to="/thuso">
-          <li
-            className={`flex gap-1 my-3 ${getActiveClass(
-              thusoMatch
-            )} rounded-md`}
-          >
-            <div className="mt-1 py-2 px-2">
-              <Image src="ai.png" className="h-6" />
-            </div>
-            <div className="text-lg mt-3">Ask Thuso</div>
           </li>
         </Link>
       </ul>

@@ -5,6 +5,9 @@ import { db } from "../../DATABASE/firebase";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
+import { Image } from "@nextui-org/image";
+import Logo from "../../assets/logo.png";
+import { Input } from "@nextui-org/input";
 
 export default function Forums() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,26 +35,65 @@ export default function Forums() {
 
   return (
     <div className="">
-      <h1 className="text-3xl font-bold mb-6">Forums</h1>
+      <div className="flex justify-between">
+        <div >
+          <div className="flex">
+            <Image src={Logo} className="w-[15rem]" />
+            <p className="text-3xl font-semibold absolute top-0 mt-[6.7rem] z-10 ms-[14.5rem]">
+              Community
+            </p>
+          </div>
+          <p className="text-gray-400">Your space to discuss topics, seek advice, and exchange ideas.</p>
+        </div>
 
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Search forums by name or tag..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 border rounded"
-        />
+        <div className="mt-3">
+          <Input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-[17rem]"
+            startContent={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width={24}
+                height={24}
+                color={"#9b9b9b"}
+                fill={"none"}
+              >
+                <path
+                  d="M17.5 17.5L22 22"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            }
+          />
+        </div>
       </div>
 
-      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 mt-[1rem]">
         {filteredForums.length > 0 ? (
           filteredForums.map((forum) => (
-            <Link className="h-52 " to={`${forum.id}`} key={forum.id}>
+            <Link className="h-52 col-span-3" to={`${forum.id}`} key={forum.id}>
               <Card className="max-w-[340px]">
                 <CardHeader className="justify-between">
                   <div className="flex gap-5">
-                    <Avatar isBordered radius="full" size="md" />
+                    <Avatar
+                      isBordered
+                      radius="full"
+                      size="md"
+                      src="https://i.pinimg.com/236x/b1/13/a0/b113a01118e0286ce985ee01543422aa.jpg"
+                    />
                     <div className="flex flex-col gap-1 items-start justify-center">
                       <h4 className="text-sm text-gray-400">{forum.user}</h4>
                       <p className="text-tiny text-gray-400">Learner</p>
@@ -66,7 +108,7 @@ export default function Forums() {
                   <div className="flex gap-1">
                     <div className="flex gap-1">
                       <div>
-                        <svg
+                        <svg0
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           width={16}
@@ -94,14 +136,13 @@ export default function Forums() {
                             strokeWidth="1.5"
                             strokeLinejoin="round"
                           />
-                        </svg>
+                        </svg0>
                       </div>
                       <p className=" text-default-400 text-small">
                         {forum.posts.length}
                       </p>
                     </div>
                   </div>
-                 
                 </CardFooter>
               </Card>
             </Link>

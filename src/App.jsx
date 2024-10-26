@@ -18,6 +18,7 @@ import Profile from "./PAGES/PROFILE/profile";
 import Subject from "./PAGES/SUBJECTS/subject";
 import AiChat from "./components/thuso_chat/aichat";
 import NoteEditor from "./PAGES/NOTES/notes";
+import Notes from "./PAGES/NOTES/allnotes";
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
             <Route path="/forums" element={<Forums />} />
             <Route path="/forums/:id" element={<Forum />} />
             <Route path="/addforum" element={<AddForum />} />
-            <Route path="/notes" element={<NoteEditor />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/newnotes" element={<NoteEditor />} />
             <Route path="/activity" element={<Activity />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/activity/quiz/:subject" element={<Quiz />} />

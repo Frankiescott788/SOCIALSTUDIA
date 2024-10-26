@@ -15,13 +15,14 @@ const Chart = () => {
 			const ctx = chart.canvas.getContext('2d'); // Access the chart's canvas context
 
 			// Create the gradient for the line
-			const lineGradient = ctx.createLinearGradient(0, 0, 0, 400);
+			const lineGradient = ctx.createLinearGradient(0, 25, 0, 300);
 			lineGradient.addColorStop(0, '#0496ff');
 			lineGradient.addColorStop(1, 'rgba(4, 150, 255, 0.3)');
 
 			// Create the gradient background mask for the entire chart
 			const backgroundGradient = ctx.createLinearGradient(0, 0, 0, 400);
 			backgroundGradient.addColorStop(0, 'rgba(4, 150, 255, 0.1)');
+			backgroundGradient.addColorStop(0.5, 'rgba(4, 150, 255, 0.1)');
 			backgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
 			// Apply gradients
@@ -44,7 +45,7 @@ const Chart = () => {
 				data: [78, 85, 65, 92, 88, 75, 80], // Performance scores
 				fill: true, // Enables filling the area under the line
 				borderColor: '#0496ff', // Fallback color
-				background: 'rgba(4, 150, 255, 0.3)', // Placeholder for gradient
+				backgroundColor: 'rgba(4, 150, 255, 0.3)', // Placeholder for gradient
 				tension: 0.4, // Smooth line tension
 				pointRadius: 0, // Removes point labels
 				borderWidth: 2, // Line thickness

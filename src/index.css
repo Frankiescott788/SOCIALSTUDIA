@@ -250,3 +250,56 @@ nav {
 .ql-toolbar .ql-picker-options {
   font-size: 14px;
 }
+.chat-bubble {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.chat-bubble.user {
+  background-color: #3b82f6; /* Tailwind Blue-500 */
+  color: white;
+  margin-left: auto; /* Align to right */
+}
+
+.chat-bubble.ai {
+  background-color: #e5e7eb; /* Tailwind Gray-200 */
+  color: black;
+}
+/* From Uiverse.io by satyamchaudharydev */ 
+.apploader {
+  display: block;
+  --height-of-loader: 4px;
+  --loader-color: #0071e2;
+  width: 130px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.apploader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+  ;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}

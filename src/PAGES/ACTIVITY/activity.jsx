@@ -5,6 +5,7 @@ import { db } from "../../DATABASE/firebase";
 import { useAuth } from "../../PROVIDERS/DataProvider";
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/table";
 import { Button } from "@nextui-org/button";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Activity() {
   const subjects = [
@@ -148,8 +149,9 @@ export default function Activity() {
 			*/}
 
       {/* Quiz Categories */}
-      <div className="mb-8 bg-[#caf0f8b4] p-6 rounded-lg">
+      <div className="mb-8 bg-[#caf0f877] p-6 rounded-lg">
         <h2 className="text-2xl font-bold text-[#0056b3]">Practice Quizzes</h2>
+        <p className="text-sm">Sharpen your skills and see how much you know.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
           {userSubjects.map((subject, index) => (
             <div
@@ -175,7 +177,7 @@ export default function Activity() {
       </div>
 
       {/* Challenge a Friend */}
-      <div className="mb-8 bg-white shadow-lg p-6 rounded-lg">
+      <div className="mb-8 bg-white p-6 rounded-lg border-2 border-dashed">
         <h2 className="text-2xl font-bold text-[#0056b3]">
           Challenge a Friend
         </h2>
@@ -188,11 +190,14 @@ export default function Activity() {
             placeholder="Enter friend's username"
             className="w-full sm:w-2/3 p-3 mb-4 sm:mb-0 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0056b3]"
           />
-          <button className="px-6 py-3 bg-[#0056b3] text-white rounded-lg hover:bg-[#003d79]">
+          <Button className="bg-[#0496ff] text-white shadowed-btn" onClick={() => {
+            toast.success('Challenge sent!');
+          }}>
             Send Challenge
-          </button>
+          </Button>
         </div>
       </div>
+      <Toaster />
 
       {/* Leaderboard */}
       <div className="mb-8 bg-white shadow-lg p-6 rounded-lg">
