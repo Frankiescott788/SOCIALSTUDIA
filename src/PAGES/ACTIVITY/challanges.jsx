@@ -30,9 +30,9 @@ export default function Challenges() {
 
   const getResponseForGivenPrompt = async (prompt) => {
     try {
-      const message = `
-        Generate a quiz with 5 questions and 4 choices on each question:
-		return in this structure
+      let message = `
+        Generate a quiz with 5 questions and 4 choices for each question:
+        Please return the response in the following structure:
         [
           {
             "question": "question text",
@@ -50,20 +50,26 @@ export default function Challenges() {
           }
           // More questions
         ]
-        Please generate a quiz based on the topic: ${prompt}, this user is a grade 12 student in South Africa and the topic is from the subject ${subject}.
-        And if the subject is history, use these questions from the following list and generate them in true or false format:
-        1. Apartheid policies in South Africa were officially implemented in 1948 by the National Party government.
-        2. The pass laws under apartheid restricted where Black South Africans could live, work, and travel.
-        3. Nelson Mandela was imprisoned for only 10 years for his opposition to apartheid before being released in 1990.
-        4. The African National Congress (ANC) was one of the main political organizations that opposed apartheid.
-        5. The apartheid system in South Africa officially ended in 1990 with the release of Nelson Mandela.
-      `;
-
+        `;
+  
+      if (subject === "history") {
+        message += `
+          Generate a true or false quiz using the following questions:
+          1. Apartheid policies in South Africa were officially implemented in 1948 by the National Party government.
+          2. The pass laws under apartheid restricted where Black South Africans could live, work, and travel.
+          3. Nelson Mandela was imprisoned for only 10 years for his opposition to apartheid before being released in 1990.
+          4. The African National Congress (ANC) was one of the main political organizations that opposed apartheid.
+          5. The apartheid system in South Africa officially ended in 1990 with the release of Nelson Mandela.
+        `;
+      } else {
+        message += `Generate questions based on the topic: ${prompt}. The user is a grade 12 student in South Africa, studying the subject ${subject}.`;
+      }
+  
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
       const result = await model.generateContent(message);
       const text = await result.response.text();
       const quizData = convertJsonToObject(text);
-
+  
       if (quizData) {
         setQuizQuestions(quizData);
       } else {
@@ -73,6 +79,7 @@ export default function Challenges() {
       console.error("Error generating content:", error);
     }
   };
+  
 
   const handleSubmitAnswer = async () => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -114,7 +121,7 @@ export default function Challenges() {
                 try {
                     const userRef = doc(db, "users", currentUser.userId);
                     await updateDoc(userRef, {
-                        "activity.points": currentUser.activity.points + 4, // Award 4 points for perfect score
+                        "activity.points": currentUser.activity.points + 4, 
                     });
                     console.log("Points updated successfully.");
                 } catch (error) {

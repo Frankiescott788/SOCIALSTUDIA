@@ -5,6 +5,8 @@ import { Link, useLocation, useMatch } from "react-router-dom";
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import Logo from "../assets/logo.png";
+import Icon from "../assets/ai.png";
+import Pdf from "../assets/Thuso.pdf";
 
 export default function Sidebar() {
   const [show, setShow] = useState(true);
@@ -55,7 +57,7 @@ export default function Sidebar() {
             className={`flex gap-2 py-2 px-2 rounded-md mb-2 ${
               pathname == "/"
                 ? "bg-[#0496ff] text-white shadowed-btn animate__animated animate__fadeIn"
-                : "text-gray-400 hover:text-green-600"  
+                : "text-gray-400 hover:text-green-600"
             } `}
             id="home"
           >
@@ -239,7 +241,7 @@ export default function Sidebar() {
             <div className="text-lg mt-3">Activity</div>
           </li>
         </Link>
-        
+
         <Link to="/notes">
           <li
             className={`flex gap-1 my-3 ${getActiveClass(
@@ -281,8 +283,16 @@ export default function Sidebar() {
               className="h-[20dvh] object-cove ms-10"
             />
             <p className="text-2xl font-semibold">
-              Let's <span className="bg-[##0496ff]">grow</span> Together.
+              Let's <span className="text-[#0496ff]">grow</span> Together.
             </p>
+            <div className="flex justify-center pt-2">
+              <a href={Pdf} download>
+                <Button className="bg-[#0496ff] py-5 flex h-[3rem] px-[3rem]">
+                  <Image src={Icon} className="h-[2rem] " />
+                  <p className="text-white">Manual Thuso</p>
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>

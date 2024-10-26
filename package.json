@@ -54,6 +54,7 @@
     "@nextui-org/theme": "^2.2.9",
     "@nextui-org/tooltip": "^2.0.39",
     "@nextui-org/user": "^2.0.33",
+    "@react-pdf/renderer": "^4.0.0",
     "chart.js": "^4.4.4",
     "date-fns": "^4.1.0",
     "draft-js": "^0.11.7",

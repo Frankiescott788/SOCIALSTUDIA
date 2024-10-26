@@ -7,6 +7,7 @@ import { Avatar } from "@nextui-org/avatar";
 import { Input } from "@nextui-org/input";
 import { useLocation } from "react-router-dom";
 import TypewriterComponent from "typewriter-effect";
+import Icon from "../../assets/logo_icon.png"
 
 export default function Thuso() {
   const [chat, setChat] = useState(null);
@@ -49,7 +50,7 @@ export default function Thuso() {
         try {
             // Modify the message to request short responses
             const result = await chat.sendMessage(`${message}. Please respond in short sentences and be as concise as possible.
-              The user who is using this platform is a learner in south africa and their name is Frankie`);
+              The user who is using this platform is a learner in south africa.`);
             const responseText = await result.response.text();
             
             // Remove asterisks using regex
@@ -213,7 +214,7 @@ export default function Thuso() {
           }`}
           onClick={() => setIsChatOpen(true)}
         >
-          <Image src="logo_icon.png" />
+          <Image src={Icon} />
         </button>
       </Card>
     </div>

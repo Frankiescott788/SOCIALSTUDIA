@@ -9,6 +9,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { ScrollShadow } from "@nextui-org/scroll-shadow";
 import { Skeleton } from "@nextui-org/skeleton";
 import TypewriterComponent from "typewriter-effect";
+import { useNavigate } from "react-router-dom";
 
 const NoteEditor = () => {
   const editor = useRef(withReact(createEditor()));
@@ -28,6 +29,8 @@ const NoteEditor = () => {
 
   const noteTitle = useRef();
   const chatContainerRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const [selectedColor, setSelectedColor] = useState("#ff0000");
 
@@ -60,7 +63,8 @@ const NoteEditor = () => {
     };
     try {
       const res = await addDoc(collection(db, "notes"), note);
-      console.log("success");
+      navigate('/notes')
+      
     } catch (error) {
       console.log(error);
     }
