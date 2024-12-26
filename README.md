@@ -17,8 +17,7 @@ This project secured **first place** at the **Telkom Learn Limpopo Hackathon**, 
 
 ## Technologies Used
 - **Frontend:** React, Tailwind CSS
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
+- **Backend:** Firebase
 - **Other Tools:**
   - Vite for fast development
   - TypeScript for type safety
