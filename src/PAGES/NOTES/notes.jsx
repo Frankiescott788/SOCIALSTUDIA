@@ -38,9 +38,9 @@ const NoteEditor = () => {
     const initializeChat = async () => {
       try {
         const genAI = new GoogleGenerativeAI(
-          "AIzaSyAAQd5fnpidGv4nU_ZklFBO0QjyEjsoURg" // Replace with your actual API key
+          "AIzaSyCfAlCStsulnvc7ohj_G0HmepXB7ZVfkB8" // Replace with your actual API key
         );
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
         const initialChat = model.startChat(); // No initial history
         setChat(initialChat);
       } catch (error) {

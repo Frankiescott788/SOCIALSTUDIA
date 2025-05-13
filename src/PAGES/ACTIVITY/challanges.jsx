@@ -25,7 +25,7 @@ export default function Challenges() {
   };
 
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyAwF4LvkcPAB1CkeC40QSI88htYAr1sFfs"
+    "AIzaSyCfAlCStsulnvc7ohj_G0HmepXB7ZVfkB8"
   );
 
   const getResponseForGivenPrompt = async (prompt) => {
@@ -65,7 +65,7 @@ export default function Challenges() {
         message += `Generate questions based on the topic: ${prompt}. The user is a grade 12 student in South Africa, studying the subject ${subject}.`;
       }
   
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
       const result = await model.generateContent(message);
       const text = await result.response.text();
       const quizData = convertJsonToObject(text);
