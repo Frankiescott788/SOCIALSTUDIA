@@ -281,9 +281,18 @@ const convertJsonToObject = (jsonString) => {
     // Clean the input string if needed
     let cleanedString = jsonString;
 
-    // Check if the response is surrounded by triple backticks (indicating code block)
-    if (cleanedString.startsWith("```") && cleanedString.endsWith("```")) {
-      cleanedString = cleanedString.slice(3, -3); // Remove the leading and trailing backticks
+    // Check if the response is surrounded by code block markers (```json or ```)
+    if (cleanedString.startsWith("```")) {
+      // Find the position of the closing backticks
+      const closingBackticksPosition = cleanedString.lastIndexOf("```");
+      
+      if (closingBackticksPosition > 3) {
+        // Extract content between opening and closing backticks
+        // Skip the first line if it contains ```json
+        const firstLineBreak = cleanedString.indexOf("\n");
+        const startPosition = firstLineBreak > 3 ? firstLineBreak + 1 : 3;
+        cleanedString = cleanedString.substring(startPosition, closingBackticksPosition).trim();
+      }
     }
 
     // Try to parse the cleaned string as JSON
